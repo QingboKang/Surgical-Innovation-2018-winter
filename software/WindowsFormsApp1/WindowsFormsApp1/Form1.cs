@@ -42,10 +42,13 @@ namespace WindowsFormsApp1
                     listData.Clear();
                     txtInfo.Text = "";
 
+                    timer1.Enabled = false;
                     serialPort1.Close();
                     btnOpenPort.Text = "Open Port";
                     btnSend.Enabled = false;
                     btnEight.Enabled = false;
+                    button1.Enabled = false;
+
                 }
                 else if (serialPort1.IsOpen == false)
                 {
@@ -65,6 +68,7 @@ namespace WindowsFormsApp1
 
                     btnSend.Enabled = true;
                     btnEight.Enabled = true;
+                    button1.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -167,6 +171,7 @@ namespace WindowsFormsApp1
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            timer1.Enabled = false;
             DisposeSerialPort();
         }
 
@@ -185,6 +190,12 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AboutBox1 a = new AboutBox1();
+            a.Show();
         }
     }
 }
