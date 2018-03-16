@@ -18,14 +18,21 @@ void setup() {
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
   pinMode(12, OUTPUT);
   digitalWrite(12, HIGH);
+
+  Serial.begin(9600);
 }
 
 void loop() {
-  myservo.write(10);
-  delay(100);
-  myservo.write(50);
-  delay(100);
-  
+  for (pos = 65; pos <= 90; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
 
+  for (pos = 90; pos >= 45; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(90);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+ //delay(1000);
 }
 
