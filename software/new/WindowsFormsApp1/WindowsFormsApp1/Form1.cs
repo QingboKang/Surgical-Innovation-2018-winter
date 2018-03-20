@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Windows.Forms;
 
+
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
@@ -123,7 +124,7 @@ namespace WindowsFormsApp1
                             {
                                 double number;
                                 Double.TryParse(token, out number);
-                                listData.Add(number);
+                                listData.Add(Convert.ToDouble(textBox1.Text)*number+Convert.ToDouble(textBox2.Text)+5);
                             }
                         }
                     }
@@ -158,7 +159,7 @@ namespace WindowsFormsApp1
                 return;
 
             List<int> listIndex = new List<int>();
-            for(int i = 1; i <= listData.Count; i++)
+            for(int i = 0; i < listData.Count; i++)
             {
                 listIndex.Add(i);
             }

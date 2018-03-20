@@ -3,7 +3,7 @@
 Servo myservo;
 const int analogInPin = A3;  
 int sensorValue = 0;        
-int iTimes = 0;
+int iTimes = 10;
 
 void setup() 
 {
@@ -25,14 +25,15 @@ int i = 0;
     delay(10);
   }
   avg=avg/10.0; //Calculate the average
-  Serial.println(avg);
+  Serial.print(avg);
+  Serial.print(",");
 }
 void doFullTurn()
 {
   for(int i=0; i<8;i++)
   {
-  myservo.write(60);
-  delay(200);
+  myservo.write(65);
+  delay(225);
   myservo.write(90); 
   MeasureDistance();
   }
@@ -53,6 +54,11 @@ while(Serial.available())
       iTimes = 10;
       doFullTurn();
       doTurnBack();
+      Serial.print("\n");
+      break;
+      case 'b':
+      MeasureDistance();
+      Serial.print("\n");
       break;
   }
 }
