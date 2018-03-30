@@ -112,7 +112,7 @@ namespace WindowsFormsApp1
                     value = value.Trim('\n');
                     // add to list
                     string[] tokens = value.Split(',');
-                    if (tokens.Count()!=9)
+                    if (tokens.Count()!=37)
                     {
                         return null;
                     }
@@ -144,7 +144,7 @@ namespace WindowsFormsApp1
         {
             string value = this.ReadSerialData();
             Action<string> setValueAction = text => this.txtInfo.Text += text;
-
+            value += "\n";
             if (this.txtInfo.InvokeRequired)
             {
                 this.txtInfo.Invoke(setValueAction, value);

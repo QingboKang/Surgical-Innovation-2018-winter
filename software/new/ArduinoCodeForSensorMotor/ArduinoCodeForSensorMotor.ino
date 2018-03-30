@@ -14,8 +14,7 @@ void setup()
 }
 void MeasureDistance()
 {
-
-int i = 0;
+  int i = 0;
   double avg=0;
   while( i < iTimes )
   {
@@ -30,18 +29,19 @@ int i = 0;
 }
 void doFullTurn()
 {
-  for(int i=0; i<8;i++)
+  for(int i=0; i<36;i++)
   {
-  myservo.write(65);
-  delay(225);
+  myservo.write(80);
+  delay(135);
   myservo.write(90); 
+  delay(50);
   MeasureDistance();
   }
 }
 void doTurnBack()
 {
   myservo.write(120);
-  delay(1500);
+  delay(1600);
   myservo.write(90); 
 }
 void loop() {
