@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
         // store all the data
         private List<double> listData;
         static int iMeasureTimes = 0;
+        static int iStepSize = 1;
 
         // Matlab 
         MLApp.MLApp matlab = new MLApp.MLApp();
@@ -34,6 +35,13 @@ namespace WindowsFormsApp1
             Array.Sort(ports);
             comboBox1.Items.AddRange(ports);
             comboBox1.SelectedIndex = comboBox1.Items.Count > 0 ? 0 : -1;
+
+            if (ports.Length == 0)
+            {
+                this.btnOpenPort.Enabled = false;
+            }
+
+            comboBox2.SelectedIndex = 0;
 
             matlab.Visible = 1;
             matlab.Execute("hold on;");
@@ -54,8 +62,6 @@ namespace WindowsFormsApp1
                     serialPort1.Close();
                     btnOpenPort.Text = "Open Port";
                     btnSend.Enabled = false;
-                   
-
                 }
                 else if (serialPort1.IsOpen == false)
                 {
@@ -176,7 +182,7 @@ namespace WindowsFormsApp1
             matlab.Execute("view(45, 45);");
             matlab.Execute("hold on;");
 
-            iMeasureTimes++;
+            iMeasureTimes += iStepSize;
          //   MessageBox.Show(sret);
 
         }
@@ -213,6 +219,8 @@ namespace WindowsFormsApp1
 
         private void btnSend_Click(object sender, EventArgs e)
         {
+            iStepSize = Int32.Parse( comboBox2.SelectedItem.ToString() );
+           
             this.listData.Clear();
             serialPort1.Write("a");
         }
