@@ -1,0 +1,12 @@
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe.config
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.ResolveComReference.cache
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csprojResolveAssemblyReference.cache
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Form1.resources
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Properties.Resources.resources
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.Cache
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.CoreCompileInputs.cache
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.pdb
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\Interop.MLApp.dll
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb

@@ -11,3 +11,5 @@ H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApp1\WindowsFormsApp
 H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Cardiovascular Team.exe
 H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Cardiovascular Team.pdb
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Interop.MLApp.dll
+H:\2018 winter\Surgical Innovation\software\new\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.ResolveComReference.cache

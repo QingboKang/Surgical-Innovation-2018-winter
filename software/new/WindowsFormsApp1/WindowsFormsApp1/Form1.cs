@@ -17,6 +17,10 @@ namespace WindowsFormsApp1
     {
         // store all the data
         private List<double> listData;
+        static int iMeasureTimes = 0;
+
+        // Matlab 
+        MLApp.MLApp matlab = new MLApp.MLApp();
 
         public Form1()
         {
@@ -30,6 +34,9 @@ namespace WindowsFormsApp1
             Array.Sort(ports);
             comboBox1.Items.AddRange(ports);
             comboBox1.SelectedIndex = comboBox1.Items.Count > 0 ? 0 : -1;
+
+            matlab.Visible = 1;
+            matlab.Execute("hold on;");
         }
 
         private void btnOpenPort_Click(object sender, EventArgs e)
@@ -140,6 +147,40 @@ namespace WindowsFormsApp1
             return value;
         }
 
+        private void Show3DModel()
+        {
+            Model3D obj_3d = new Model3D();
+            if (listData.Count + 1!= obj_3d.iDataLen)
+            {
+                return;
+            }
+
+            double[] data = new double[obj_3d.iDataLen];
+            for (int i = 0; i < obj_3d.iDataLen - 1; i++)
+            {
+                data[i] = listData[i];
+            }
+            data[obj_3d.iDataLen - 1] = data[0];
+
+            double[] dX = obj_3d.GetX(data);
+            double[] dY = obj_3d.GetY(data);
+            double[] dZ = obj_3d.GetZ(iMeasureTimes);
+
+            matlab.PutWorkspaceData("X", "base", dX);
+            matlab.PutWorkspaceData("Y", "base", dY);
+            matlab.PutWorkspaceData("Z", "base", dZ);
+
+            String sret = matlab.Execute("plot3(X, Y, Z, 'LineWidth', 5);");
+            matlab.Execute("xlabel('X'), ylabel('Y'), zlabel('Z');");
+            matlab.Execute("grid on;");
+            matlab.Execute("view(45, 45);");
+            matlab.Execute("hold on;");
+
+            iMeasureTimes++;
+         //   MessageBox.Show(sret);
+
+        }
+
         private void RefreshInfoTextBox()
         {
             string value = this.ReadSerialData();
@@ -165,6 +206,7 @@ namespace WindowsFormsApp1
             }
 
             chart1.Invoke((MethodInvoker)delegate { chart1.Series[0].Points.DataBindXY(listIndex, listData); });
+            Show3DModel();
           //  this.chart1.Series[1].Points.DataBindXY(listIndex, listData);
 
         }
@@ -173,7 +215,6 @@ namespace WindowsFormsApp1
         {
             this.listData.Clear();
             serialPort1.Write("a");
-            //Thread.Sleep(100);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

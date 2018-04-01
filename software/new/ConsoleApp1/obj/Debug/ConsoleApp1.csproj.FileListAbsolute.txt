@@ -1,0 +1,9 @@
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\obj\Debug\ConsoleApp1.csprojResolveAssemblyReference.cache
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\obj\Debug\Interop.MLApp.dll
+H:\2018 winter\Surgical Innovation\software\new\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.ResolveComReference.cache
