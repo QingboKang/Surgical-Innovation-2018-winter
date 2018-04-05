@@ -181,14 +181,26 @@ namespace WindowsFormsApp1
             matlab.PutWorkspaceData("Y", "base", dY);
             matlab.PutWorkspaceData("Z", "base", dZ);
 
-            String sret = matlab.Execute("plot3(X, Y, Z, 'LineWidth', 5);");
+            String sret = matlab.Execute("plot3(X, Y, Z, 'LineWidth', 2);");
             matlab.Execute("xlabel('X'), ylabel('Y'), zlabel('Z');");
             matlab.Execute("grid on;");
             matlab.Execute("view(45, 45);");
             matlab.Execute("hold on;");
 
             iMeasureTimes += iStepSize;
-         //   MessageBox.Show(sret);
+
+            List<double[]> listXYZ = new List<double[]>();
+            listXYZ.Add(dX);
+            listXYZ.Add(dY);
+            listXYZ.Add(dZ);
+
+            queueData.Enqueue(listXYZ);
+
+            if (queueData.Count == 2)
+            {
+                ShowClose3DSurf();
+            }
+
         }
 
         private void ShowClose3DSurf()
@@ -331,26 +343,7 @@ namespace WindowsFormsApp1
             matlab.PutWorkspaceData("Y", "base", dY);
             matlab.PutWorkspaceData("Z", "base", dZ);
 
-            String sret = matlab.Execute("plot3(X, Y, Z, 'LineWidth', 2);");
-            matlab.Execute("xlabel('X'), ylabel('Y'), zlabel('Z');");
-            matlab.Execute("grid on;");
-            matlab.Execute("view(45, 45);");
-            matlab.Execute("hold on;");
 
-            iMeasureTimes += iStepSize;
-
-            List<double[]> listXYZ = new List<double[]>();
-            listXYZ.Add(dX);
-            listXYZ.Add(dY);
-            listXYZ.Add(dZ);
-
-            queueData.Enqueue(listXYZ);
-
-            if(queueData.Count == 2)
-            {
-               
-                ShowClose3DSurf();
-            }
         }
     }
 }
