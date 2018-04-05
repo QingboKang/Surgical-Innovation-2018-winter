@@ -24,6 +24,14 @@ X_3 = sensor_data_3 .* cos(theta * pi / 180);
 Y_3 = sensor_data_3 .* sin(theta * pi / 180);
 Z_3 = 3 * ones(1, 37);
 
+%%
+plot3(X_1, Y_1, Z_1);
+hold on;
+plot3(X_2, Y_2, Z_2);
+plot3(X_3, Y_3, Z_3);
+
+
+%%
 for ii = 1 : 36
     X = [X_1(ii), X_1(ii + 1), X_2(ii+1), X_2(ii)];
     Y = [Y_1(ii), Y_1(ii + 1), Y_2(ii+1), Y_2(ii)];
@@ -41,11 +49,11 @@ for ii = 1 : 36
     
     fill3(X, Y, Z, C, 'EdgeColor', 'none')
     alpha(0.5);
+    
     hold on;
 end
 
     
 xlabel('X'), ylabel('Y'), zlabel('Z');
-hold off;
 grid on;
 view(45, 45);

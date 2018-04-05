@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,11 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        // store all the data
+        // data queue
+        private Queue<List<double[]>> queueData;
+        // store the data
         private List<double> listData;
+
         static int iMeasureTimes = 0;
         static int iStepSize = 1;
 
@@ -27,6 +31,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             listData = new List<double>();
+            queueData = new Queue<List<double[]>>();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -184,6 +189,44 @@ namespace WindowsFormsApp1
 
             iMeasureTimes += iStepSize;
          //   MessageBox.Show(sret);
+        }
+
+        private void ShowClose3DSurf()
+        {
+            // make sure that the size of the queue is 2
+            if (queueData.Count != 2)
+            {
+                return;
+            }
+
+            List<double[]> listXYZFirst = queueData.Dequeue();
+            List<double[]> listXYZSecond = queueData.Peek();
+
+            double[] dXFirst = listXYZFirst[0];
+            double[] dYFirst = listXYZFirst[1];
+            double[] dZFirst = listXYZFirst[2];
+
+            double[] dXSecond = listXYZSecond[0];
+            double[] dYSecond = listXYZSecond[1];
+            double[] dZSecond = listXYZSecond[2];
+
+            matlab.Execute("C = linspace(0, 1, 4);");
+            for(int i = 0; i < dXFirst.Length - 1; i++)
+            {
+                double[] XPatch = { dXFirst[i], dXFirst[i + 1], dXSecond[i + 1], dXSecond[i] };
+                double[] YPatch = { dYFirst[i], dYFirst[i + 1], dYSecond[i + 1], dYSecond[i] };
+                double[] ZPatch = { dZFirst[i], dZFirst[i + 1], dZSecond[i + 1], dZSecond[i] };
+
+                matlab.PutWorkspaceData("XPatch", "base", XPatch);
+                matlab.PutWorkspaceData("YPatch", "base", YPatch);
+                matlab.PutWorkspaceData("ZPatch", "base", ZPatch);
+
+                String ret = matlab.Execute("fill3(XPatch, YPatch, ZPatch, C, 'EdgeColor', 'none');");
+                matlab.Execute("alpha(0.5);");
+                matlab.Execute("hold on;");
+              //  MessageBox.Show(ret);
+            }
+
 
         }
 
@@ -262,6 +305,51 @@ namespace WindowsFormsApp1
                     serialPort1.Close();
                     Close();
                     break;
+            }
+        }
+
+        // this is just for test 3D plot
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Random ra = new Random();
+
+            Model3D obj_3d = new Model3D();
+
+            double[] data = new double[obj_3d.iDataLen];
+            for (int i = 0; i < obj_3d.iDataLen - 1; i++)
+            {
+                // data[i] = listData[i];
+                data[i] = 30 + ra.NextDouble() * 10;
+            }
+            data[obj_3d.iDataLen - 1] = data[0];
+
+            double[] dX = obj_3d.GetX(data);
+            double[] dY = obj_3d.GetY(data);
+            double[] dZ = obj_3d.GetZ(iMeasureTimes);
+
+            matlab.PutWorkspaceData("X", "base", dX);
+            matlab.PutWorkspaceData("Y", "base", dY);
+            matlab.PutWorkspaceData("Z", "base", dZ);
+
+            String sret = matlab.Execute("plot3(X, Y, Z, 'LineWidth', 2);");
+            matlab.Execute("xlabel('X'), ylabel('Y'), zlabel('Z');");
+            matlab.Execute("grid on;");
+            matlab.Execute("view(45, 45);");
+            matlab.Execute("hold on;");
+
+            iMeasureTimes += iStepSize;
+
+            List<double[]> listXYZ = new List<double[]>();
+            listXYZ.Add(dX);
+            listXYZ.Add(dY);
+            listXYZ.Add(dZ);
+
+            queueData.Enqueue(listXYZ);
+
+            if(queueData.Count == 2)
+            {
+               
+                ShowClose3DSurf();
             }
         }
     }

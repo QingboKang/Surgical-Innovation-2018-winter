@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         private double[] dAngle;
         private double[] dCosine;
         private double[] dSine;
-
+         
         // X Y Z 
         private double[] dX;
         private double[] dY;
