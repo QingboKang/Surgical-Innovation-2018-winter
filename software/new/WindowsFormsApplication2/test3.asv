@@ -1,0 +1,38 @@
+clc;
+close all;
+clear;
+
+theta = linspace(0, 360, 37);
+
+C = ones(1, 2);
+
+sensor_data_1 = ones(1, 37) * 1 * 10;
+sensor_data_1(37) = sensor_data_1(1);   
+X_1 = sensor_data_1 .* cos(theta * pi / 180);
+Y_1 = sensor_data_1 .* sin(theta * pi / 180);
+Z_1 = 1 * ones(1, 37);
+
+sensor_data_2 = ones(1, 37) * 2 * 10;
+sensor_data_2(37) = sensor_data_2(1);   
+X_2 = sensor_data_2 .* cos(theta * pi / 180);
+Y_2 = sensor_data_2 .* sin(theta * pi / 180);
+Z_2 = 2 * ones(1, 37);
+
+for ii = 1 : 36
+    X = [X_1(ii), X_2(ii + 1)];
+    Y = [Y_1(ii), Y_1(ii + 1)];
+    Z = [Z_1(ii), Z_1(ii + 1)];
+    
+    fill3(X, Y, Z, C)
+    alpha(0.5);
+    hold on;
+end
+
+    
+
+    
+    
+xlabel('X'), ylabel('Y'), zlabel('Z');
+hold off;
+grid on;
+view(45, 45);
